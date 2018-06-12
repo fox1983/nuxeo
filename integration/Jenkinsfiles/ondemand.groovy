@@ -99,7 +99,7 @@ def verifyProfile(String profile, String version, String sha, String zipfile) {
     }
 }
 
-def emitVerifyClosure(String sha, String zipfile, String name, String module, Clojure post) {
+def emitVerifyClosure(String sha, String zipfile, String name, String module, Closure post) {
     return {
         stage(name) {
             timeout(time: 2, unit: 'HOURS') {
