@@ -294,4 +294,26 @@ public class TestService {
         assertEquals("dummy.pdf", resultBlob.getFilename());
     }
 
+
+    @Test
+    @Deploy("org.nuxeo.ecm.core.convert:OSGI-INF/converters-test-multi-contrib.xml")
+    public void testListBlobCaching() {
+        Map<String, Serializable> parameters = new HashMap<>();
+        Blob blob = Blobs.createBlob("dummy text", "text/plain");
+        BlobHolder result = cs.convert("dummyMulti", new SimpleBlobHolder(blob), parameters);
+        List<Blob> resultBlobs = result.getBlobs();
+        assertNotNull(resultBlobs);
+        assertEquals(2, resultBlobs.size());
+        assertEquals("file1", resultBlobs.get(0).getFilename());
+        assertEquals("file2", resultBlobs.get(1).getFilename());
+
+        BlobHolder result2 = cs.convert("dummyMulti", new SimpleBlobHolder(blob), parameters);
+        List<Blob> resultBlobs2 = result2.getBlobs();
+        assertNotNull(resultBlobs2);
+        assertEquals(2, resultBlobs2.size());
+        assertEquals("file1", resultBlobs2.get(0).getFilename());
+        assertEquals("file2", resultBlobs2.get(1).getFilename());
+    }
+
+
 }
