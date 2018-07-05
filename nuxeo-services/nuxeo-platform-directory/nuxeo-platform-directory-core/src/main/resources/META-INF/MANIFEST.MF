@@ -20,7 +20,8 @@ Nuxeo-Component: OSGI-INF/DirectoryService.xml,
  OSGI-INF/CoreDirectory.xml,
  OSGI-INF/directory-local-configuration.xml,
  OSGI-INF/directory-resolver-contrib.xml,
- OSGI-INF/marshallers-contrib.xml
+ OSGI-INF/marshallers-contrib.xml,
+ OSGI-INF/filters-contrib.xml
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.commons.logging,
  org.nuxeo.common.xmap.annotation,
